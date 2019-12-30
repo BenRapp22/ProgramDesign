@@ -1,9 +1,11 @@
-//Ben Rapp
-//1068 - 003
-//Assignment 7. Book Recommender - This program creates a recommended list of books that the user hasn't read yet based on other people's scores
+/*Ben Rapp
+1068-003
+This project creates a list of book recommendations for a user based on the similarity of their taste to a group of sample users. 
+I was not allowed to use ArrayLists in this project*/
 
 import java.io.*;
 import java.util.*;
+
 
 public class BookRecommender{
 	public static void main(String args[]) 
@@ -28,6 +30,7 @@ public class BookRecommender{
 		
 	}
 	
+	//Reads in a book list as a fixed-length array
 	public static String[] bookRead() 
 	throws FileNotFoundException{
 		String[] booklist = new String[20];
@@ -41,6 +44,8 @@ public class BookRecommender{
 		return booklist;
 	}
 	
+	
+	//Creates a 2D array of the sample scores for each book
 	public static int[][] ratingRead() throws FileNotFoundException{
 		int[][]ratingtable = new int[30][20];
 		Scanner ratingscan = new Scanner(new File("src/ratings.txt"));
@@ -58,6 +63,7 @@ public class BookRecommender{
 		return ratingtable;
 	}
 	
+	//Prompts the user for their scores for each book
 	public static int[] userRatings(String[] booklist) {
 		int[] userratings = new int[20];
 		Scanner in = new Scanner(System.in);
@@ -78,7 +84,7 @@ public class BookRecommender{
 	}
 	
 	
-	
+	//Method to help break up the similarity calculation for the user's book list and the sample table
 	public static double calcSquare(int[] userratings) {
 		double p = 0.0;
 		for(int i = 0; i<20; i++) {
@@ -88,6 +94,7 @@ public class BookRecommender{
 		return p;
 	}
 	
+	//Helper method
 	public static double productRatings(int[] userratings, int[] ratinglist) {
 		double both = 0;
 		for(int i = 0; i < 20; i++) {
@@ -96,6 +103,7 @@ public class BookRecommender{
 		return both;
 	}
 	
+	//Calculates the similarity of the user's score to other sample scores using Cosine Similarity
 	public static double[] similarityScores(int[] userratings, int[][] ratinglist) {
 		double user = calcSquare(userratings);
 		
@@ -108,6 +116,7 @@ public class BookRecommender{
 		return similarity;	
 	}
 	
+	//Creates a table of weighted averages for each book score to help deliver a recommendation
 	public static double[] bookAv(int[][] ratinglist, double[] simscores) {
 		double[] wavarray = new double[20];
 		
@@ -129,6 +138,7 @@ public class BookRecommender{
 		return wavarray;
 	}
 	
+	//Orders the list of weighted averages for recommendation
 	public static String[] recOrder(double[] waverages, String[] booklist, int[] userratings) {
 		double[] wavsort = waverages.clone();
 		Arrays.sort(wavsort);
