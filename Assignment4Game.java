@@ -32,10 +32,10 @@ public class game {
 	//Prints the Rules
 	public static void Intro() {
 		System.out.println("Welcome to Havstra! Here are the rules:\n"
-				+ "Applaro beats Svartrå and Tunholmen\r\n" + 
-				"Svartrå beats Tunholmen\r\n" + 
+				+ "Applaro beats SvartrÃ¥ and Tunholmen\r\n" + 
+				"SvartrÃ¥ beats Tunholmen\r\n" + 
 				"Tunholmen beats Godafton\r\n" + 
-				"Godafton beats Applaro and Svartrå\r\n" + 
+				"Godafton beats Applaro and SvartrÃ¥\r\n" + 
 				"The computer wins in the event of a tie.");
 		System.out.println();
 	}
